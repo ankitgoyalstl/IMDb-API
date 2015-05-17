@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMDbAPI
+namespace IMDbAPIInternal
 {
     /// <summary>
     /// Class to contain details about Actor/Actress
@@ -43,9 +43,6 @@ namespace IMDbAPI
             set { this._WikiURL = value; }
         }
 
-        /// <summary>
-        /// Link of Photos of Actor
-        /// </summary>
         public string PhotoURL
         {
             get { return this._PhotoURL; }
