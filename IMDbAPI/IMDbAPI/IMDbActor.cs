@@ -4,25 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMDbAPIInternal
+namespace IMDbAPI
 {
     /// <summary>
     /// Class to contain details about Actor/Actress
     /// </summary>
-    class IMDbActor
+    public class IMDbActor
     {
         private string _Name = null;
+        private string _IMDbCode = null;
         private string _IMDbURL = null;
         private string _PhotoURL = null;
         private string _WikiURL =  null;
 
         /// <summary>
-        /// Nameof the Actor
+        /// Name of the Actor
         /// </summary>
         public string Name
         {
             get { return this._Name; }
             set { this._Name = value; }
+        }
+
+
+        /// <summary>
+        /// IMDb Code of the Actor
+        /// </summary>
+        public string IMDbCode
+        {
+            get { return this._IMDbCode; }
+            set { this._IMDbCode = value; }
         }
 
         /// <summary>
@@ -43,6 +54,9 @@ namespace IMDbAPIInternal
             set { this._WikiURL = value; }
         }
 
+        /// <summary>
+        /// Link of Photos of Actor
+        /// </summary>
         public string PhotoURL
         {
             get { return this._PhotoURL; }

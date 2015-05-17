@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMDbAPIInternal
+namespace IMDbAPI
 {
-    class IMDbDirector
+    /// <summary>
+    /// Class to contain details about Movie Directors
+    /// </summary>
+    public class IMDbDirector
     {
         private string _Name = null;
         private string _IMDbURL = null;
