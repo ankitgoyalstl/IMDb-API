@@ -39,5 +39,43 @@ namespace IMDbAPI
 
             return movieList;
         }
+
+        public static List<IMDbActor> GetActorsList(IMDbMovie movieData)
+        {
+            List<IMDbActor> actorsList = null;
+
+            if(string.IsNullOrEmpty(movieData.MovieCode) || string.IsNullOrWhiteSpace(movieData.MovieCode))
+            {
+                return actorsList;
+            }
+
+            string moviePageURL = IMDbUtils.GetCompleteIMDbURL("/title/" + movieData.MovieCode);
+            string pageContent = IMDbUtils.GetPage(moviePageURL);
+
+            Regex actorNameRegex = new Regex("<a href=\"(.*)\"\nitemprop='url'> <span class.*\"name\">(.+)</span>");
+            MatchCollection regexMatchCollection = actorNameRegex.Matches(pageContent);
+            if (regexMatchCollection == null)
+            {
+                return actorsList;
+            }
+            else
+            {
+                actorsList = new List<IMDbActor>();
+            }
+
+            foreach (Match regexMatch in regexMatchCollection)
+            {
+                IMDbActor actorItem = new IMDbActor();
+                actorItem.IMDbURL = regexMatch.Groups[1].Value.ToString();
+                actorItem.IMDbURL = Regex.Replace(actorItem.IMDbURL, @"/\?ref_=tt_cl_t\d+", "");
+                actorItem.IMDbCode = actorItem.IMDbURL.Replace("/name/", "").ToString();
+                actorItem.IMDbURL = IMDbUtils.GetCompleteIMDbURL(actorItem.IMDbURL);
+                actorItem.Name = regexMatch.Groups[2].Value.ToString();
+
+                actorsList.Add(actorItem);
+            }
+
+            return actorsList;
+        }
     }
 }
